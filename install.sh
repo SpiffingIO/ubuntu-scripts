@@ -60,43 +60,42 @@ run_step "Installing AWS CLI" "
 "
 
 run_step "Installing AWS EB CLI" "
-  python -m venv ~/eb-venv
-  source ~/eb-venv/bin/activate
+  python -m venv /opt/eb-venv
+  source /opt/eb-venv/bin/activate
   pip3 install awsebcli
   deactivate
 "
 
 run_step "Installing fonttools in venv" "
-  python3 -m venv ~/fonttools-venv
-  source ~/fonttools-venv/bin/activate
+  python3 -m venv /opt/fonttools-venv
+  sudo chmod -R a+rx /opt/fonttools-venv
+  source /opt/fonttools-venv/bin/activate
   pip3 install fonttools
   deactivate
 "
 
 run_step "Installing brotli in venv" "
-  python3 -m venv ~/brotli-venv
-  source ~/brotli-venv/bin/activate
+  python3 -m venv /opt/brotli-venv
+  sudo chmod -R a+rx /opt/brotli-venv
+  source /opt/brotli-venv/bin/activate
   pip3 install brotli
   deactivate
 "
 
 run_step "Installing zopfli in venv" "
-  python3 -m venv ~/zopfli-venv
-  source ~/zopfli-venv/bin/activate
+  python3 -m venv /opt/zopfli-venv
+  sudo chmod -R a+rx /opt/zopfli-venv
+  source /opt/zopfli-venv/bin/activate
   pip3 install zopfli
   deactivate
 "
 
 run_step "Installing sslyze in venv" "
-  python3 -m venv ~/sslyze-venv
-  source ~/sslyze-venv/bin/activate
+  python3 -m venv /opt/sslyze-venv
+  sudo chmod -R a+rx /opt/sslyze-venv
+  source /opt/sslyze-venv/bin/activate
   pip3 install sslyze
   deactivate
-"
-
-run_step "Installing Glyphhanger via npm" "
-  sudo apt-get install -y nodejs npm
-  sudo npm install -g glyphhanger
 "
 
 run_step "Installing NVM" "
@@ -104,6 +103,11 @@ run_step "Installing NVM" "
   export NVM_DIR=\"\$HOME/.nvm\"
   [ -s \"\$NVM_DIR/nvm.sh\" ] && \. \"\$NVM_DIR/nvm.sh\"
   nvm install --lts
+  nvm install 24
+"
+
+run_step "Installing Glyphhanger via npm" "
+  sudo npm install -g glyphhanger
 "
 
 run_step "Installing Google Chrome" "
@@ -121,19 +125,13 @@ run_step "Installing Obsidian" "
 "
 
 run_step "Installing ImageMagick AppImage" "
-  mkdir -p ~/AppImages
-  wget -O ~/AppImages/imagemagick.AppImage https://github.com/ImageMagick/ImageMagick/releases/download/7.1.1-28/ImageMagick-7.1.1-28.AppImage
-  chmod +x ~/AppImages/imagemagick.AppImage
+  mkdir -p /opt/AppImages
+  sudo chmod -R a+rx /opt/AppImages
+  wget -O /opt/AppImages/imagemagick.AppImage https://github.com/ImageMagick/ImageMagick/releases/download/7.1.1-28/ImageMagick-7.1.1-28.AppImage
+  chmod +x /opt/AppImages/imagemagick.AppImage
 "
 
 run_step "Installing VSCode" "sudo snap install code --classic"
-
-run_step "Installing Slack" "
-  SLACK_DEB=\$(mktemp)
-  wget -O \"\$SLACK_DEB\" https://downloads.slack-edge.com/linux_releases/slack-desktop-4.39.88-amd64.deb
-  sudo dpkg -i \"\$SLACK_DEB\" || sudo apt-get install -f -y
-  rm \"\$SLACK_DEB\"
-"
 
 run_step "Enable UFW" "sudo ufw enable"
 
