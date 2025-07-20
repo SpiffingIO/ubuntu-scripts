@@ -8,7 +8,7 @@ LOG="/tmp/install-log.txt"
 touch "$LOG"
 SUMMARY=""
 
-run_step{
+run_step() {
   local message=$1
   local command=$2
 
