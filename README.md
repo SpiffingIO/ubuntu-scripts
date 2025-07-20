@@ -30,6 +30,7 @@ Post installation, you are required to configure the following:
 
 - **GitHub Personal Access Token**: This can be found in your GitHub profile under Developer Options.
 - **Google Cloud CLI**: Run `gloud init`.
+- **Slack**: [Install Slack through the Snap Store](https://slack.com/downloads/linux)
 
 #### Other Recommendations
 
