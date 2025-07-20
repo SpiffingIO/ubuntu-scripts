@@ -126,7 +126,7 @@ run_step "Installing Obsidian" "
 "
 
 run_step "Installing ImageMagick AppImage" "
-  mkdir -p /opt/AppImages
+  sudo mkdir -p /opt/AppImages
   sudo chmod -R a+rx /opt/AppImages
   wget -O /opt/AppImages/imagemagick.AppImage https://github.com/ImageMagick/ImageMagick/releases/download/7.1.1-28/ImageMagick-7.1.1-28.AppImage
   chmod +x /opt/AppImages/imagemagick.AppImage
