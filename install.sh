@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-TOTAL_STEPS=21
+TOTAL_STEPS=23
 current_step=0
 LOG="/tmp/install-log.txt"
 touch "$LOG"
