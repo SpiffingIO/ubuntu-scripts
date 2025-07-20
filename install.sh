@@ -60,14 +60,15 @@ run_step "Installing AWS CLI" "
 "
 
 run_step "Installing AWS EB CLI" "
-  python -m venv /opt/eb-venv
+  python3 -m venv /opt/eb-venv
+  sudo chmod -R a+rx /opt/eb-venv
   source /opt/eb-venv/bin/activate
   pip3 install awsebcli
   deactivate
 "
 
 run_step "Installing fonttools in venv" "
-  python3 -m venv /opt/fonttools-venv
+  sudo python3 -m venv /opt/fonttools-venv
   sudo chmod -R a+rx /opt/fonttools-venv
   source /opt/fonttools-venv/bin/activate
   pip3 install fonttools
@@ -75,7 +76,7 @@ run_step "Installing fonttools in venv" "
 "
 
 run_step "Installing brotli in venv" "
-  python3 -m venv /opt/brotli-venv
+  sudo python3 -m venv /opt/brotli-venv
   sudo chmod -R a+rx /opt/brotli-venv
   source /opt/brotli-venv/bin/activate
   pip3 install brotli
@@ -83,7 +84,7 @@ run_step "Installing brotli in venv" "
 "
 
 run_step "Installing zopfli in venv" "
-  python3 -m venv /opt/zopfli-venv
+  sudo python3 -m venv /opt/zopfli-venv
   sudo chmod -R a+rx /opt/zopfli-venv
   source /opt/zopfli-venv/bin/activate
   pip3 install zopfli
@@ -91,7 +92,7 @@ run_step "Installing zopfli in venv" "
 "
 
 run_step "Installing sslyze in venv" "
-  python3 -m venv /opt/sslyze-venv
+  sudo python3 -m venv /opt/sslyze-venv
   sudo chmod -R a+rx /opt/sslyze-venv
   source /opt/sslyze-venv/bin/activate
   pip3 install sslyze
