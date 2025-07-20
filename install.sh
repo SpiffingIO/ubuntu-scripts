@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-TOTAL_STEPS=20
-CURRENT_STEP=0
+TOTAL_STEPS=22
+current_step=0
 LOG="/tmp/install-log.txt"
 touch "$LOG"
 SUMMARY=""
@@ -12,15 +12,15 @@ run_step() {
   local message=$1
   local command=$2
 
-  CURRENT_STEP=$((step_num * 100 / TOTAL_STEPS))
-  printf "[%2d/%2d] %s... " "$step_num" "$TOTAL_STEPS" "$message"
+  current_step=$((current_step + 1))
+  printf "[%2d/%2d] %s... " "$current_step" "$TOTAL_STEPS" "$message"
 
   if eval "$command" >> "$LOG" 2>&1; then
     echo "✅"
-    SUMMARY+="$step_num. $message ✓\n"
+    SUMMARY+="$current_step. $message ✓\n"
   else
     echo "❌"
-    SUMMARY+="$step_num. $message ❌ (see $LOG)\n"
+    SUMMARY+="$current_step. $message ❌ (see $LOG)\n"
   fi
 }
 
@@ -46,7 +46,8 @@ run_step "Installing GitHub CLI" "
 
 run_step "Configuring Flatpak" "flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
 
-run_step "Installing Google Cloud SDK" "curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz
+run_step "Installing Google Cloud SDK" "
+  curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz
   tar -xf google-cloud-cli-linux-x86_64.tar.gz
   ./google-cloud-sdk/install.sh --usage-reporting false --command-completion true --quiet
 "
@@ -72,7 +73,26 @@ run_step "Installing fonttools in venv" "
   deactivate
 "
 
-run_step "Installing pip tools" "pip3 install brotli zopfli sslyze"
+run_step "Installing brotli in venv" "
+  python3 -m venv ~/brotli-venv
+  source ~/brotli-venv/bin/activate
+  pip3 install brotli
+  deactivate
+"
+
+run_step "Installing zopfli in venv" "
+  python3 -m venv ~/zopfli-venv
+  source ~/zopfli-venv/bin/activate
+  pip3 install zopfli
+  deactivate
+"
+
+run_step "Installing sslyze in venv" "
+  python3 -m venv ~/sslyze-venv
+  source ~/sslyze-venv/bin/activate
+  pip3 install sslyze
+  deactivate
+"
 
 run_step "Installing Glyphhanger via npm" "
   sudo apt-get install -y nodejs npm
@@ -95,7 +115,12 @@ run_step "Installing Google Chrome" "
   rm \"\$CHROME_DEB\"
 "
 
-run_step "Installing Obsidian" "flatpak install flathub md.obsidian.Obsidian"
+run_step "Installing Obsidian" "
+  OBSIDIAN_DEB=\$(mktemp)
+  wget -O \"\$OBSIDIAN_DEB\" https://github.com/obsidianmd/obsidian-releases/releases/download/v1.8.10/obsidian_1.8.10_amd64.deb
+  sudo dpkg -i \"\$OBSIDIAN_DEB\" || sudo apt-get install -f -y
+  rm \"\$OBSIDIAN_DEB\"
+"
 
 run_step "Installing ImageMagick AppImage" "
   mkdir -p ~/AppImages
