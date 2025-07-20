@@ -34,20 +34,19 @@ Post installation, you are required to configure the following:
 
 #### Other Recommendations
 
-Scaling Factor 
-- `$ gsettings set org.gnome.desktop.interface scaling-factor 0.88`
+- Scaling Factor 
+  - `$ gsettings set org.gnome.desktop.interface scaling-factor 0.88`
 
+- `chrome://flags`
+  - `#ozone-platform-hint=Wayland`
+  - `#wayland-per-window-scaling=Enabled`
+  - `#wayland-ui-scaling=Enabled`
 
-`chrome://flags`
-- `#ozone-platform-hint=Wayland`
-- `#wayland-per-window-scaling=Enabled`
-- `#wayland-ui-scaling=Enabled`
-
-Recommended Gnome Extensions:
-- Bluetooth Quick Connect
-- GSConnect
-- Auto Power Profile
-- Caffeine
+- Recommended Gnome Extensions:
+  - Bluetooth Quick Connect
+  - GSConnect
+  - Auto Power Profile
+  - Caffeine
 
 ### Logging
 
