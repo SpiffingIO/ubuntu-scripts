@@ -47,7 +47,10 @@ run_step 4 "Installing GitHub CLI" "
 
 run_step 5 "Configuring Flatpak" "flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
 
-run_step 6 "Installing Google Cloud SDK" "curl -sSL https://sdk.cloud.google.com | bash"
+run_step 6 "Installing Google Cloud SDK" "curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz
+  tar -xf google-cloud-cli-linux-x86_64.tar.gz
+  ./google-cloud-sdk/install.sh
+"
 
 run_step 7 "Installing MongoDB" "
   wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
