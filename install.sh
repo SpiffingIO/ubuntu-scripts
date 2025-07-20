@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-TOTAL_STEPS=22
+TOTAL_STEPS=21
 current_step=0
 LOG="/tmp/install-log.txt"
 touch "$LOG"
@@ -106,8 +106,6 @@ run_step "Installing NVM" "
   nvm install --lts
 "
 
-run_step "Setting GNOME scaling factor" "gsettings set org.gnome.desktop.interface scaling-factor 0.88 || true"
-
 run_step "Installing Google Chrome" "
   CHROME_DEB=\$(mktemp)
   wget -O \"\$CHROME_DEB\" https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -136,6 +134,10 @@ run_step "Installing Slack" "
   sudo dpkg -i \"\$SLACK_DEB\" || sudo apt-get install -f -y
   rm \"\$SLACK_DEB\"
 "
+
+run_step "Enable UFW" "sudo ufw enable"
+
+run_step "Enable IPv4 forwarding" "sudo sysctl -w net.ipv4.ip_forward=1"
 
 run_step "Final APT fix & cleanup" "sudo apt-get install -f -y"
 run_step "Cleaning up package cache" "sudo apt-get autoremove -y"
