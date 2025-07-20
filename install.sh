@@ -8,33 +8,34 @@ LOG="/tmp/install-log.txt"
 touch "$LOG"
 SUMMARY=""
 
-update_progress() {
-  local step=$1
-  local message=$2
-  CURRENT_STEP=$((step * 100 / TOTAL_STEPS))
-  echo $CURRENT_STEP
-  echo "# $message"
-}
-
 run_step() {
   local step_num=$1
   local message=$2
   local command=$3
 
-  update_progress "$step_num" "$message"
-  eval "$command" >> "$LOG" 2>&1
-  SUMMARY+="$step_num. $message ✓\n"
-  sleep 0.3
+  CURRENT_STEP=$((step_num * 100 / TOTAL_STEPS))
+  printf "[%2d/%2d] %s... " "$step_num" "$TOTAL_STEPS" "$message"
+
+  if eval "$command" >> "$LOG" 2>&1; then
+    echo "✅"
+    SUMMARY+="$step_num. $message ✓\n"
+  else
+    echo "❌"
+    SUMMARY+="$step_num. $message ❌ (see $LOG)\n"
+  fi
 }
 
-{
+echo "▶ Starting development environment setup..."
+echo "Log file: $LOG"
+echo "--------------------------------------------"
+
 run_step 1 "Updating system packages" "sudo apt-get update -y"
 run_step 2 "Upgrading existing packages" "sudo apt-get upgrade -y"
 
 run_step 3 "Installing APT packages" "sudo apt-get install -y \
   pavucontrol libfuse2 libinput-tools ruby xdotool python3-pip \
   curl git flatpak kdeconnect gnome-sushi gnome-shell-extension-manager \
-  noisetorch docker.io v4l-utils vlc graphviz pdftk gnome-tweaks \
+  docker.io v4l-utils vlc graphviz pdftk gnome-tweaks \
   python3 python3-venv ffmpeg virt-manager gimp"
 
 run_step 4 "Installing GitHub CLI" "
@@ -119,7 +120,8 @@ run_step 19 "Installing Slack" "
 
 run_step 20 "Final APT fix & cleanup" "sudo apt-get install -f -y"
 run_step 21 "Cleaning up package cache" "sudo apt-get autoremove -y"
-} | whiptail --gauge "Installing development environment..." 8 70 0
 
-# Final Summary
-whiptail --title "Installation Complete" --msgbox "All steps completed successfully.\n\n$SUMMARY" 20 70
+# Summary
+echo -e "\n✅ Setup Complete! Summary:\n"
+echo -e "$SUMMARY"
+echo "Full output log saved at: $LOG"
