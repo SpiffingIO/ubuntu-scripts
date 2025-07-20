@@ -126,10 +126,8 @@ run_step "Installing Obsidian" "
 "
 
 run_step "Installing ImageMagick AppImage" "
-  sudo mkdir -p /opt/AppImages
-  sudo chmod -R a+rx /opt/AppImages
-  wget -O /opt/AppImages/imagemagick.AppImage https://github.com/ImageMagick/ImageMagick/releases/download/7.1.1-28/ImageMagick-7.1.1-28.AppImage
-  chmod +x /opt/AppImages/imagemagick.AppImage
+  sudo wget -O /usr/local/bin/magick https://imagemagick.org/archive/binaries/magick
+  sudo chmod a+x /usr/local/bin/magick
 "
 
 run_step "Installing VSCode" "sudo snap install code --classic"
