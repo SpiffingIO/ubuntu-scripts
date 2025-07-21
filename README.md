@@ -9,19 +9,19 @@ The `install.sh` script contains an install script that installs the most common
 To run the script, you can download it using `wget`:
 
 ```
-$ wget https://raw.githubusercontent.com/SpiffingIO/ubuntu-scripts/refs/heads/main/install.sh -O install.sh
+wget https://raw.githubusercontent.com/SpiffingIO/ubuntu-scripts/refs/heads/main/install.sh -O install.sh
 ```
 
 Set the script to executable:
 
 ```
-$ chmod +x ./install.sh
+chmod +x ./install.sh
 ```
 
 Run the script (it might request your `sudo` password to install some dependencies):
 
 ```
-$ ./install.sh
+./install.sh
 ```
 
 ### Post Installation
@@ -34,20 +34,19 @@ Post installation, you are required to configure the following:
 
 #### Other Recommendations
 
-Scaling Factor 
-- `$ gsettings set org.gnome.desktop.interface scaling-factor 0.88`
+- Scaling Factor 
+  - `$ gsettings set org.gnome.desktop.interface scaling-factor 0.88`
 
+- `chrome://flags`
+  - `#ozone-platform-hint=Wayland`
+  - `#wayland-per-window-scaling=Enabled`
+  - `#wayland-ui-scaling=Enabled`
 
-`chrome://flags`
-- `#ozone-platform-hint=Wayland`
-- `#wayland-per-window-scaling=Enabled`
-- `#wayland-ui-scaling=Enabled`
-
-Recommended Gnome Extensions:
-- Bluetooth Quick Connect
-- GSConnect
-- Auto Power Profile
-- Caffeine
+- Recommended Gnome Extensions:
+  - Bluetooth Quick Connect
+  - GSConnect
+  - Auto Power Profile
+  - Caffeine
 
 ### Logging
 
