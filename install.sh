@@ -104,12 +104,11 @@ run_step "Installing NVM" "
   export NVM_DIR=\"\$HOME/.nvm\"
   [ -s \"\$NVM_DIR/nvm.sh\" ] && \. \"\$NVM_DIR/nvm.sh\"
   nvm install --lts
-  nvm install --current
+  nvm install 24
 "
 
 run_step "Installing Glyphhanger via npm" "
-  source ~/.bashrc
-  sudo npm install -g glyphhanger
+  npm install -g glyphhanger
 "
 
 run_step "Installing Google Chrome" "
