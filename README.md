@@ -34,9 +34,6 @@ Post installation, you are required to configure the following:
 
 #### Other Recommendations
 
-- Scaling Factor 
-  - `$ gsettings set org.gnome.desktop.interface scaling-factor 0.88`
-
 - `chrome://flags`
   - `#ozone-platform-hint=Wayland`
   - `#wayland-per-window-scaling=Enabled`
