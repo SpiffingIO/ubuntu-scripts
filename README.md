@@ -34,7 +34,7 @@ Post installation, you are required to configure the following:
 
 #### Other Recommendations
 
-- `chrome://flags`
+- In Google Chrome, update the following flags to support hardware acceleration in Wayland and window scaling. Navigate to `chrome://flags`
   - `#ozone-platform-hint=Wayland`
   - `#wayland-per-window-scaling=Enabled`
   - `#wayland-ui-scaling=Enabled`
