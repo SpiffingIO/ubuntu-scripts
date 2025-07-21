@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-TOTAL_STEPS=22
+TOTAL_STEPS=23
 current_step=0
 LOG="/tmp/install-log.txt"
 touch "$LOG"
@@ -132,6 +132,8 @@ run_step "Installing ImageMagick AppImage" "
 "
 
 run_step "Installing VSCode" "sudo snap install code --classic"
+
+run_step "Installing Slack" "sudo snap install slack"
 
 run_step "Enable UFW" "sudo ufw enable"
 
