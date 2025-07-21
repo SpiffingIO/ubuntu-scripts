@@ -204,7 +204,7 @@ Run the script (it might request your `sudo` password to install some dependenci
 
 Post installation, you are required to configure the following:
 
-- **GitHub Personal Access Token**: This can be found in your GitHub profile under Developer Options.
+- **GitHub SSH**: This can be found in your _GitHub Settings_ under _SSH and GPG keys_. [Read more](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
 - **Google Cloud CLI**: Run `gloud init`.
 - **Slack**: [Install Slack through the Snap Store](https://slack.com/downloads/linux)
 
