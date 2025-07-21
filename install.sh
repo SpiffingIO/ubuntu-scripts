@@ -35,7 +35,7 @@ run_step "Installing APT packages" "sudo apt-get install -y \
   pavucontrol libfuse2 libinput-tools ruby xdotool python3-pip \
   curl git flatpak kdeconnect gnome-sushi gnome-shell-extension-manager \
   docker.io v4l-utils vlc graphviz pdftk gnome-tweaks \
-  python3 python3-venv python-is-python3 ffmpeg virt-manager gimp \ 
+  python3 python3-venv python-is-python3 ffmpeg virt-manager gimp \
   libavif16 libevent-2.1-7t64"
 
 run_step "Installing GitHub CLI" "
