@@ -60,7 +60,7 @@ run_step "Installing AWS CLI" "
 "
 
 run_step "Installing AWS EB CLI" "
-  python3 -m venv /opt/eb-venv
+  sudo python3 -m venv /opt/eb-venv
   sudo chmod -R a+rx /opt/eb-venv
   source /opt/eb-venv/bin/activate
   pip3 install awsebcli
@@ -104,10 +104,11 @@ run_step "Installing NVM" "
   export NVM_DIR=\"\$HOME/.nvm\"
   [ -s \"\$NVM_DIR/nvm.sh\" ] && \. \"\$NVM_DIR/nvm.sh\"
   nvm install --lts
-  nvm install 24
+  nvm install --current
 "
 
 run_step "Installing Glyphhanger via npm" "
+  source ~/.bashrc
   sudo npm install -g glyphhanger
 "
 
